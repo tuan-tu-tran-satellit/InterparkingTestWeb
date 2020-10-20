@@ -33,8 +33,15 @@ namespace InterparkingTest.Application.Services
 
         public async Task SaveRouteAsync(Route route, CancellationToken cancellationToken = default)
         {
-            Routes.Attach(route);
-
+            bool update = route.Id != 0;
+            if(update)
+            {
+                Routes.Update(route);
+            }
+            else
+            {
+                Routes.Add(route);
+            }
             await SaveChangesAsync(cancellationToken);
         }
     }
