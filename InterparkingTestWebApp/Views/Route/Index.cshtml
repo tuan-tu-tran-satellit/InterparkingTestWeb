@@ -2,7 +2,7 @@
     ViewData["Title"] = "Routes";
 }
 
-@model List<Route>
+@model List<InterparkingTest.Application.Domain.Route>
 <div class="text-center">
     <h1 class="display-4">Routes</h1>
 </div>
@@ -22,7 +22,7 @@ else
         @foreach (var route in Model)
         {
             <tr>
-                <td>@(route.StartLatitude)</td>
+                <td>@(route.StartPoint.Latitude)</td>
             </tr>
         }
     </table>

@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InterparkingTest.Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -29,6 +31,10 @@ namespace InterparkingTestWebApp
                 logging
                     .AddConsole()
                 ;
+            });
+            services.AddInterparkingTestApplicationServices(dbOptions =>
+            {
+                dbOptions.UseSqlite("Filename=routes.sqlite3");
             });
         }
 
