@@ -69,5 +69,47 @@ namespace InterparkingTest.Application.Services
             });
             fuelRoute.Should().BeEquivalentTo(routeDefinition);
         }
+
+        [TestMethod]
+        public async Task UpdateRoute()
+        {
+            //Arrange
+            var routeId = 1234;
+            var routeDefinition = TestData.CreateRoute();
+            double distance = 6.7;
+            _routing.Setup(s => s.CalculateDistanceAsync(routeDefinition.StartPoint, routeDefinition.EndPoint, _cancellation)).ReturnsAsync(distance);
+
+            double fuel = 12.3;
+            Route fuelRoute = null;
+            _fuel.Setup(s => s.CalculateFuelConsumptionAsync(It.IsAny<Route>(), _cancellation))
+                .Callback<Route, CancellationToken>((route, _) => fuelRoute = route)
+                .ReturnsAsync(fuel)
+            ;
+
+            Route savedRoute = null;
+            _repo.Setup(s => s.SaveRouteAsync(It.IsAny<Route>(), _cancellation))
+                .Callback<Route, CancellationToken>((route, _) => savedRoute = route)
+                .Returns(Task.CompletedTask)
+            ;
+
+            //act
+            await _routeModificationService.UpdateRouteAsync(routeId, routeDefinition, _cancellation);
+
+            //Assert
+            Mock.VerifyAll(_routing, _repo, _fuel);
+
+            savedRoute.Should().BeEquivalentTo(new Route()
+            {
+                Id = routeId,
+                StartPoint = routeDefinition.StartPoint,
+                EndPoint = routeDefinition.EndPoint,
+                EngineStartEffort = routeDefinition.EngineStartEffort,
+                CarConsumption = routeDefinition.CarConsumption,
+                Distance = distance,
+                FuelConsumption = fuel,
+            });
+            fuelRoute.Should().BeEquivalentTo(routeDefinition);
+        }
+
     }
 }
