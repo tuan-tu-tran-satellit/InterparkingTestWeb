@@ -46,7 +46,7 @@ namespace InterparkingTestWebApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Route}/{action=Index}/{id?}");
             });
         }
     }

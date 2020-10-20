@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Routes";
+}
+
+@model List<Route>
+<div class="text-center">
+    <h1 class="display-4">Routes</h1>
+</div>
+
+@if (Model.Count == 0)
+{
+    <div>No routes</div>
+}
+else
+{
+    <table>
+        <tr>
+            <th>Start</th>
+            <th>Stop</th>
+        </tr>
+        @foreach (var route in Model)
+        {
+            <tr>
+                <td>@(route.StartLatitude)</td>
+            </tr>
+        }
+    </table>
+}
