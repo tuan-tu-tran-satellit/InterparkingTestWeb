@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace InterparkingTest.Application.Services
@@ -14,6 +15,27 @@ namespace InterparkingTest.Application.Services
     [TestClass]
     public class RouteRepositoryTest
     {
+
+        private SqliteConnection _connection;
+        [TestInitialize]
+        public void InitConnection()
+        {
+            _connection = new SqliteConnection("Filename=:memory:");
+            _connection.Open();
+        }
+        private RouteRepository CreateRepo(bool reset = false)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder();
+            optionsBuilder.UseSqlite(_connection);
+            var repo = new RouteRepository(optionsBuilder.Options);
+            if (reset)
+            {
+                repo.Database.EnsureDeleted();
+                repo.Database.EnsureCreated();
+            }
+            return repo;
+        }
+
         [TestMethod]
         public void ModelIsValidWithInMemory()
         {
@@ -41,53 +63,59 @@ namespace InterparkingTest.Application.Services
         [TestMethod]
         public async Task AddRoute()
         {
-            var optionsBuilder = new DbContextOptionsBuilder();
-            var connection = new SqliteConnection("Filename=:memory:");
-            connection.Open();
-            optionsBuilder.UseSqlite(connection);
-
+            //Arrange
             Route seedRoute = TestData.CreateRoute();
-            using (var repo = new RouteRepository(optionsBuilder.Options))
+
+            using (var repo = CreateRepo(reset: true))
             {
-                repo.Database.EnsureCreated();
+                //Act
                 await repo.SaveRouteAsync(seedRoute);
             }
 
-            using (var repo = new RouteRepository(optionsBuilder.Options))
+            //Assert
+            using (var repo = CreateRepo())
             {
                 repo.Routes.Count().Should().Be(1);
                 var route = repo.Routes.First();
                 route.Should().BeEquivalentTo(seedRoute);
                 route.Should().NotBeSameAs(seedRoute);
             }
+        }
 
+        [TestMethod]
+        public async Task UpdateRoute()
+        {
+            //Arrange
+            var seedRoute = CreateSeedRoute();
             seedRoute.Distance = seedRoute.Distance + 100;
-            using (var repo = new RouteRepository(optionsBuilder.Options))
-            {
-                await repo.SaveRouteAsync(seedRoute);
-            }
-
-            using (var repo = new RouteRepository(optionsBuilder.Options))
-            {
-                repo.Routes.Count().Should().Be(1);
-                var route = repo.Routes.First();
-                route.Should().BeEquivalentTo(seedRoute);
-                route.Should().NotBeSameAs(seedRoute);
-            }
-
             seedRoute.StartPoint = TestData.CreateRoute(5).StartPoint;
-            using (var repo = new RouteRepository(optionsBuilder.Options))
+            seedRoute.EndPoint = TestData.CreateRoute(7).EndPoint;
+            seedRoute.FuelConsumption = seedRoute.FuelConsumption + 124;
+
+            using (var repo = CreateRepo())
             {
+                //Act
                 await repo.SaveRouteAsync(seedRoute);
             }
 
-            using (var repo = new RouteRepository(optionsBuilder.Options))
+            //Assert
+            using (var repo = CreateRepo())
             {
                 repo.Routes.Count().Should().Be(1);
                 var route = repo.Routes.First();
                 route.Should().BeEquivalentTo(seedRoute);
                 route.Should().NotBeSameAs(seedRoute);
             }
+        }
+
+        private Route CreateSeedRoute()
+        {
+            Route seedRoute = TestData.CreateRoute();
+            using (var repo = CreateRepo(reset: true))
+            {
+                repo.SaveRouteAsync(seedRoute).Wait();
+            }
+            return seedRoute;
         }
     }
 }
