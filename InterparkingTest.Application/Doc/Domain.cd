@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="InterparkingTest.Application.Commands.CreateRoute.RouteDefinition">
+    <Position X="8" Y="1" Width="2" />
+    <AssociationLine Name="EndPoint" Type="InterparkingTest.Application.Domain.Coordinates">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.16" Y="0.668" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="StartPoint" Type="InterparkingTest.Application.Domain.Coordinates" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8" Y="2.003" />
+        <Point X="5.625" Y="2.003" />
+        <Point X="5.625" Y="3.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.932" Y="0.493" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAIgAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Domain\RouteDefinition.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="EndPoint" />
+      <Property Name="StartPoint" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="InterparkingTest.Application.Commands.CreateRoute.Route">
+    <Position X="7.25" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAQAAAAAAAAAAAAAAIgABAAQAAAAAAAAg=</HashCode>
+      <FileName>Domain\Route.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="EndPoint" />
+      <Property Name="StartPoint" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="InterparkingTest.Application.Domain.Coordinates">
+    <Position X="4" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Coordinates.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
