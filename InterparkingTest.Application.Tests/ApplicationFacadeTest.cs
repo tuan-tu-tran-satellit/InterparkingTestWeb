@@ -29,7 +29,7 @@ namespace InterparkingTest.Application
         public async Task AddRoute()
         {
             //Arrange
-            RouteDefinition route = TestData.CreateRoute();
+            RouteDefinition route = TestData.CreateRouteDefinition();
             _routeModificationService.Setup(s => s.AddRouteAsync(route, _cancellationToken)).Returns(Task.CompletedTask);
 
             //Act
@@ -43,7 +43,7 @@ namespace InterparkingTest.Application
         public async Task UpdateRoute()
         {
             //Arrange
-            RouteDefinition route = TestData.CreateRoute();
+            RouteDefinition route = TestData.CreateRouteDefinition();
             int routeId = 4567;
             _routeModificationService.Setup(s => s.UpdateRouteAsync(routeId, route, _cancellationToken)).Returns(Task.CompletedTask);
             

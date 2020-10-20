@@ -6,7 +6,7 @@ namespace InterparkingTest.Application
 {
     internal static class TestData
     {
-        internal static RouteDefinition CreateRoute(int offset = 0)
+        internal static RouteDefinition CreateRouteDefinition(int offset = 0)
         {
             return new RouteDefinition()
             {

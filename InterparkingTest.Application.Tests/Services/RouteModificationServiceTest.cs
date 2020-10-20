@@ -35,7 +35,7 @@ namespace InterparkingTest.Application.Services
         public async Task AddRoute()
         {
             //Arrange
-            var routeDefinition = TestData.CreateRoute();
+            var routeDefinition = TestData.CreateRouteDefinition();
             double distance = 6.7;
             _routing.Setup(s => s.CalculateDistanceAsync(routeDefinition.StartPoint, routeDefinition.EndPoint, _cancellation)).ReturnsAsync(distance);
 
@@ -75,7 +75,7 @@ namespace InterparkingTest.Application.Services
         {
             //Arrange
             var routeId = 1234;
-            var routeDefinition = TestData.CreateRoute();
+            var routeDefinition = TestData.CreateRouteDefinition();
             double distance = 6.7;
             _routing.Setup(s => s.CalculateDistanceAsync(routeDefinition.StartPoint, routeDefinition.EndPoint, _cancellation)).ReturnsAsync(distance);
 
