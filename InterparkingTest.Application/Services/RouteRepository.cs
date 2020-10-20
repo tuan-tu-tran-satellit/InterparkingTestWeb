@@ -1,5 +1,4 @@
-﻿using InterparkingTest.Application.Commands.CreateRoute;
-using InterparkingTest.Application.Domain;
+﻿using InterparkingTest.Application.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;

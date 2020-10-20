@@ -46,14 +46,14 @@
       <FileName>IApplicationFacade.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="InterparkingTest.Application.Commands.CreateRoute.IFuelConsumptionService">
+  <Interface Name="InterparkingTest.Application.Services.IFuelConsumptionService">
     <Position X="4" Y="15.75" Width="6" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>Services\IFuelConsumptionService.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="InterparkingTest.Application.Commands.CreateRoute.IRouteRepository">
+  <Interface Name="InterparkingTest.Application.Services.IRouteRepository">
     <Position X="8.25" Y="7.75" Width="5.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAgAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>

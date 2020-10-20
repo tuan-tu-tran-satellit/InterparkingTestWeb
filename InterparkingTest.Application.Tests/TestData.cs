@@ -1,5 +1,4 @@
-﻿using InterparkingTest.Application.Commands.CreateRoute;
-using InterparkingTest.Application.Domain;
+﻿using InterparkingTest.Application.Domain;
 using System;
 
 namespace InterparkingTest.Application

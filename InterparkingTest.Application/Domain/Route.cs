@@ -1,6 +1,4 @@
-﻿using InterparkingTest.Application.Domain;
-
-namespace InterparkingTest.Application.Commands.CreateRoute
+﻿namespace InterparkingTest.Application.Domain
 {
     public class Route
     {

@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using InterparkingTest.Application.Commands.CreateRoute;
+using InterparkingTest.Application.Domain;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

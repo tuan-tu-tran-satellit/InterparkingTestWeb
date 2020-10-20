@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using InterparkingTest.Application.Domain;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace InterparkingTest.Application.Commands.CreateRoute
+namespace InterparkingTest.Application.Services
 {
     public interface IRouteRepository
     {

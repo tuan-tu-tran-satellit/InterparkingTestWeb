@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using InterparkingTest.Application.Commands.CreateRoute;
+using InterparkingTest.Application.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;

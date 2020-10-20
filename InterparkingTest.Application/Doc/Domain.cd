@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
-  <Class Name="InterparkingTest.Application.Commands.CreateRoute.RouteDefinition">
+  <Class Name="InterparkingTest.Application.Domain.RouteDefinition">
     <Position X="8" Y="1" Width="2" />
     <AssociationLine Name="EndPoint" Type="InterparkingTest.Application.Domain.Coordinates">
       <MemberNameLabel ManuallyPlaced="true">
@@ -26,7 +26,7 @@
       <Property Name="StartPoint" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="InterparkingTest.Application.Commands.CreateRoute.Route">
+  <Class Name="InterparkingTest.Application.Domain.Route">
     <Position X="7.25" Y="3.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAQAAAAAAAAAAAAAAIgABAAQAAAAAAAAg=</HashCode>

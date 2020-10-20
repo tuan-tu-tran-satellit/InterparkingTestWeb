@@ -1,9 +1,8 @@
-﻿using InterparkingTest.Application.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace InterparkingTest.Application.Commands.CreateRoute
+namespace InterparkingTest.Application.Domain
 {
     public class RouteDefinition
     {
