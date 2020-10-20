@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace InterparkingTest.Application.Services
@@ -19,17 +20,17 @@ namespace InterparkingTest.Application.Services
             _routeRepository = routeRepository;
         }
 
-        public async Task AddRouteAsync(RouteDefinition definition)
+        public async Task AddRouteAsync(RouteDefinition definition, CancellationToken cancellation)
         {
-            await HandleRouteModification(definition, null);
+            await HandleRouteModification(definition, null, cancellation);
         }
 
-        public async Task UpdateRouteAsync(int id, RouteDefinition route)
+        public async Task UpdateRouteAsync(int id, RouteDefinition route, CancellationToken cancellation)
         {
-            await HandleRouteModification(route, id);
+            await HandleRouteModification(route, id, cancellation);
         }
 
-        private async Task HandleRouteModification(RouteDefinition definition, int? id)
+        private async Task HandleRouteModification(RouteDefinition definition, int? id, CancellationToken cancellation)
         {
             Route route = new Route()
             {
@@ -44,9 +45,9 @@ namespace InterparkingTest.Application.Services
                 route.Id = id.Value;
             }
 
-            route.Distance = await _routingService.CalculateDistanceAsync(route.StartPoint, route.EndPoint);
+            route.Distance = await _routingService.CalculateDistanceAsync(route.StartPoint, route.EndPoint, cancellation);
 
-            route.FuelConsumption = await _fuelConsumptionService.CalculateFuelConsumptionAsync(route);
+            route.FuelConsumption = await _fuelConsumptionService.CalculateFuelConsumptionAsync(route, cancellation);
 
             await _routeRepository.SaveRouteAsync(route);
         }

@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace InterparkingTest.Application.Services
 {
     class RoutingService : IRoutingService
     {
-        public Task<double> CalculateDistanceAsync(Coordinates startPoint, Coordinates endPoint)
+        public Task<double> CalculateDistanceAsync(Coordinates startPoint, Coordinates endPoint, CancellationToken _)
         {
             //Simple implementation that calculates the "crow-flight" distance
             var a = new Geolocation.Coordinate()

@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace InterparkingTest.Application.Services
 {
     class FuelConsumptionService : IFuelConsumptionService
     {
-        public Task<double> CalculateFuelConsumptionAsync(Route route)
+        public Task<double> CalculateFuelConsumptionAsync(Route route, CancellationToken _)
         {
             var result = route.Distance * route.FuelConsumption;
             //Consider using route.EngineStartEffort
