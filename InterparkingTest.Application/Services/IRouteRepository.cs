@@ -1,7 +1,11 @@
-﻿namespace InterparkingTest.Application.Commands.CreateRoute
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace InterparkingTest.Application.Commands.CreateRoute
 {
     public interface IRouteRepository
     {
-        void SaveRoute(Route route);
+        Task<List<Route>> GetRoutesAsync();
+        Task SaveRouteAsync(Route route);
     }
 }

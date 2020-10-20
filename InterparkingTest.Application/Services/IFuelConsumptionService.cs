@@ -1,7 +1,9 @@
-﻿namespace InterparkingTest.Application.Commands.CreateRoute
+﻿using System.Threading.Tasks;
+
+namespace InterparkingTest.Application.Commands.CreateRoute
 {
     public interface IFuelConsumptionService
     {
-        double CalculateFuelConsumption(Route route);
+        Task<double> CalculateFuelConsumptionAsync(Route route);
     }
 }

@@ -1,9 +1,10 @@
 ﻿using InterparkingTest.Application.Domain;
+using System.Threading.Tasks;
 
 namespace InterparkingTest.Application.Services
 {
     public interface IRoutingService
     {
-        double CalculateDistance(Coordinates startPoint, Coordinates endPoint);
+        Task<double> CalculateDistanceAsync(Coordinates startPoint, Coordinates endPoint);
     }
 }
