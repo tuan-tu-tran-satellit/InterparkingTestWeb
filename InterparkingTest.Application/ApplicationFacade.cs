@@ -32,5 +32,10 @@ namespace InterparkingTest.Application
         {
             return await _routeRepository.GetRoutesAsync(cancellationToken);
         }
+
+        public void EnsureDatabaseCreated()
+        {
+            _routeRepository.EnsureDatabaseCreated();
+        }
     }
 }

@@ -61,6 +61,12 @@ namespace InterparkingTestWebApp
                     name: "default",
                     pattern: "{controller=Route}/{action=Index}/{id?}");
             });
+
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var applicationFacade = scope.ServiceProvider.GetRequiredService<IApplicationFacade>();
+                applicationFacade.EnsureDatabaseCreated();
+            }
         }
     }
 }

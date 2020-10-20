@@ -43,5 +43,10 @@ namespace InterparkingTest.Application.Services
             }
             await SaveChangesAsync(cancellationToken);
         }
+
+        public void EnsureDatabaseCreated()
+        {
+            this.Database.EnsureCreated();
+        }
     }
 }
