@@ -1,4 +1,5 @@
 ﻿using InterparkingTest.Application.Commands.CreateRoute;
+using InterparkingTest.Application.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
@@ -16,6 +17,13 @@ namespace InterparkingTest.Application.Services
         public RouteRepository(DbContextOptions options)
             : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Route>().OwnsOne<Coordinates>(r => r.StartPoint);
+            modelBuilder.Entity<Route>().OwnsOne<Coordinates>(r => r.EndPoint);
         }
 
         public async Task<List<Route>> GetRoutesAsync(CancellationToken cancellationToken = default)
