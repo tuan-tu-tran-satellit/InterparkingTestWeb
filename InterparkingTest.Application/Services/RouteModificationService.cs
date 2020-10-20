@@ -49,7 +49,7 @@ namespace InterparkingTest.Application.Services
 
             route.FuelConsumption = await _fuelConsumptionService.CalculateFuelConsumptionAsync(route, cancellation);
 
-            await _routeRepository.SaveRouteAsync(route);
+            await _routeRepository.SaveRouteAsync(route, cancellation);
         }
     }
 }

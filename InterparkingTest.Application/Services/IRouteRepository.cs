@@ -6,7 +6,7 @@ namespace InterparkingTest.Application.Commands.CreateRoute
 {
     public interface IRouteRepository
     {
-        Task<List<Route>> GetRoutesAsync(CancellationToken cancellationToken = default);
-        Task SaveRouteAsync(Route route, CancellationToken cancellationToken = default);
+        Task<List<Route>> GetRoutesAsync(CancellationToken cancellationToken);
+        Task SaveRouteAsync(Route route, CancellationToken cancellationToken);
     }
 }
