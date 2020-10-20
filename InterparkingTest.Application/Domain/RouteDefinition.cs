@@ -9,6 +9,9 @@ namespace InterparkingTest.Application.Commands.CreateRoute
     {
         public Coordinates StartPoint { get; set; }
         public Coordinates EndPoint { get; set; }
+        /// <summary>
+        /// In liters/km
+        /// </summary>
         public double CarConsumption { get; set; }
         public double EngineStartEffort { get; set; }
     }
