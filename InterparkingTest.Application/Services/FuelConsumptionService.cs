@@ -11,7 +11,7 @@ namespace InterparkingTest.Application.Services
     {
         public Task<double> CalculateFuelConsumptionAsync(Route route, CancellationToken _)
         {
-            var result = route.Distance * route.FuelConsumption;
+            var result = route.Distance * route.CarConsumption;
             //Consider using route.EngineStartEffort
             
             return Task.FromResult(result);
