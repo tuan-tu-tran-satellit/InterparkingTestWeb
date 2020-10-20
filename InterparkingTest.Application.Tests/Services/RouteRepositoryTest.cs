@@ -117,5 +117,17 @@ namespace InterparkingTest.Application.Services
             }
             return seedRoute;
         }
+
+        [TestMethod]
+        public async Task GetRoutes()
+        {
+            var seedRoute = this.CreateSeedRoute();
+
+            using (var repo = CreateRepo())
+            {
+                var routes = await repo.GetRoutesAsync();
+                routes.Should().BeEquivalentTo(new Route[] { seedRoute });
+            }
+        }
     }
 }
