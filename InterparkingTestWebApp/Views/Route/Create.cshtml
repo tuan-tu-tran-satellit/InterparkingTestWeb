@@ -17,32 +17,32 @@
         </div>
         <div class="form-group col-md-4">
             <label asp-for="StartPoint.Latitude" class="control-label"></label>
-            <input asp-for="StartPoint.Latitude" class="form-control" />
+            <input asp-for="StartPoint.Latitude" class="form-control" placeholder="ex.: 4.345677" />
             <span asp-validation-for="StartPoint.Latitude" class="text-danger"></span>
         </div>
     </div>
     <h4>Arrival</h4>
     <div class="row">
         <div class="form-group col-md-4">
-            <label asp-for="EndPoint.Latitude" class="control-label"></label>
-            <input asp-for="EndPoint.Latitude" class="form-control" placeholder="ex.: 54.125687" />
-            <span asp-validation-for="EndPoint.Latitude" class="text-danger"></span>
+            <label asp-for="EndPoint.Longitude" class="control-label"></label>
+            <input asp-for="EndPoint.Longitude" class="form-control" placeholder="ex.: 54.125687" />
+            <span asp-validation-for="EndPoint.Longitude" class="text-danger"></span>
         </div>
         <div class="form-group col-md-4">
             <label asp-for="EndPoint.Latitude" class="control-label"></label>
-            <input asp-for="EndPoint.Latitude" class="form-control" />
+            <input asp-for="EndPoint.Latitude" class="form-control" placeholder="ex.: 4.345677" />
             <span asp-validation-for="EndPoint.Latitude" class="text-danger"></span>
         </div>
     </div>
     <h4>Fuel consumption</h4>
     <div class="row">
         <div class="form-group col-md-4">
-            <label asp-for="CarConsumption" class="control-label">Car consumption</label>
+            <label asp-for="CarConsumption" class="control-label">Car consumption (L/100 km)</label>
             <input asp-for="CarConsumption" class="form-control" />
             <span asp-validation-for="CarConsumption" class="text-danger"></span>
         </div>
         <div class="form-group col-md-4">
-            <label asp-for="EngineStartEffort" class="control-label">Engine start effort</label>
+            <label asp-for="EngineStartEffort" class="control-label">Engine start effort (ml)</label>
             <input asp-for="EngineStartEffort" class="form-control" />
             <span asp-validation-for="EngineStartEffort" class="text-danger"></span>
         </div>
