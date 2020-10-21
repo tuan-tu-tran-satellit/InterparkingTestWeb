@@ -34,7 +34,7 @@ namespace InterparkingTest.Application.Infrastructure
                     ).ReadToEnd();
             Uri calledUri = null;
             httpClient
-                .Setup(c => c.GetStringAsync(It.IsAny<Uri>(), cancellation))
+                .Setup(c => c.GetStringAsync(It.IsAny<Uri>(), cancellation, It.IsAny<HttpStatusCode[]>()))
                 .Callback<Uri, CancellationToken, HttpStatusCode[]>((uri, _, codes) => calledUri = uri)
                 .ReturnsAsync((HttpStatusCode.OK, response))
             ;
