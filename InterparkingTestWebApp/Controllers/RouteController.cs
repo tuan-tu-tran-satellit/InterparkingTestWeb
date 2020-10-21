@@ -35,16 +35,6 @@ namespace InterparkingTestWebApp.Controllers
             SetTitle(_TITLE_CREATE);
             return View(_FORM_VIEW_NAME);
         }
-
-        private void SetTitle(string title)
-        {
-            ViewData["Title"] = title;
-        }
-
-        const string _FORM_VIEW_NAME = "Form";
-        const string _TITLE_CREATE = "Create new route";
-        const string _TITLE_EDIT = "Edit route";
-
         public async Task<IActionResult> Edit(int id, CancellationToken cancellation)
         {
             SetTitle(_TITLE_EDIT);
@@ -54,6 +44,15 @@ namespace InterparkingTestWebApp.Controllers
                 Route = await _application.GetRouteDefinition(id, cancellation),
             });
         }
+
+        private void SetTitle(string title)
+        {
+            ViewData["Title"] = title;
+        }
+
+        const string _FORM_VIEW_NAME = "Form";
+        const string _TITLE_CREATE = "Create new route";
+        const string _TITLE_EDIT = "Edit route";
 
         [HttpPost]
         public async Task<IActionResult> Save(RouteFormData formData, CancellationToken cancellationToken)
