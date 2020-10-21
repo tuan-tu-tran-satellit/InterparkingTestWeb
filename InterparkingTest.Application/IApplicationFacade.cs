@@ -7,9 +7,9 @@ namespace InterparkingTest.Application
 {
     public interface IApplicationFacade
     {
-        Task AddRouteAsync(RouteDefinition command, CancellationToken cancellation);
+        Task<RouteModificationResult> AddRouteAsync(RouteDefinition command, CancellationToken cancellation);
         Task<List<Route>> GetRoutes(CancellationToken cancellation);
-        Task UpdateRoute(int id, RouteDefinition route, CancellationToken cancellation);
+        Task<RouteModificationResult> UpdateRoute(int id, RouteDefinition route, CancellationToken cancellation);
         void EnsureDatabaseCreated();
         Task<RouteDefinition> GetRouteDefinition(int id, CancellationToken cancellation);
     }

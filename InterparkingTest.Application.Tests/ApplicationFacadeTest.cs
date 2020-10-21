@@ -31,7 +31,7 @@ namespace InterparkingTest.Application
         {
             //Arrange
             RouteDefinition route = TestData.CreateRouteDefinition();
-            _routeModificationService.Setup(s => s.AddRouteAsync(route, _cancellationToken)).Returns(Task.CompletedTask);
+            _routeModificationService.Setup(s => s.AddRouteAsync(route, _cancellationToken)).ReturnsAsync(TestData.CreateRoutModificationResult());
 
             //Act
             await _applicationFacade.AddRouteAsync(route, _cancellationToken);
@@ -46,7 +46,7 @@ namespace InterparkingTest.Application
             //Arrange
             RouteDefinition route = TestData.CreateRouteDefinition();
             int routeId = 4567;
-            _routeModificationService.Setup(s => s.UpdateRouteAsync(routeId, route, _cancellationToken)).Returns(Task.CompletedTask);
+            _routeModificationService.Setup(s => s.UpdateRouteAsync(routeId, route, _cancellationToken)).ReturnsAsync(TestData.CreateRoutModificationResult());
             
             //Act
             await _applicationFacade.UpdateRoute(routeId, route, _cancellationToken);

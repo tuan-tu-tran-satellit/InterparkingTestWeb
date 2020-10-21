@@ -6,6 +6,6 @@ namespace InterparkingTest.Application.Services
 {
     public interface IRoutingService
     {
-        Task<double> CalculateDistanceAsync(Coordinates startPoint, Coordinates endPoint, CancellationToken cancellation);
+        Task<double?> CalculateDistanceAsync(Coordinates startPoint, Coordinates endPoint, CancellationToken cancellation);
     }
 }

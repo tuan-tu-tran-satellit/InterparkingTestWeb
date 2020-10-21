@@ -18,14 +18,14 @@ namespace InterparkingTest.Application
             _routeModificationService = routeModificationService;
             _routeRepository = routeRepository;
         }
-        public async Task AddRouteAsync(RouteDefinition command, CancellationToken cancellation)
+        public async Task<RouteModificationResult> AddRouteAsync(RouteDefinition command, CancellationToken cancellation)
         {
-            await _routeModificationService.AddRouteAsync(command, cancellation);
+            return await _routeModificationService.AddRouteAsync(command, cancellation);
         }
 
-        public async Task UpdateRoute(int id, RouteDefinition route, CancellationToken cancellation)
+        public async Task<RouteModificationResult> UpdateRoute(int id, RouteDefinition route, CancellationToken cancellation)
         {
-            await _routeModificationService.UpdateRouteAsync(id, route, cancellation);
+            return await _routeModificationService.UpdateRouteAsync(id, route, cancellation);
         }
 
         public async Task<List<Route>> GetRoutes(CancellationToken cancellationToken)

@@ -6,7 +6,7 @@ namespace InterparkingTest.Application
 {
     public interface IRouteModificationService
     {
-        Task UpdateRouteAsync(int id, RouteDefinition route, CancellationToken cancellation);
-        Task AddRouteAsync(RouteDefinition command, CancellationToken cancellation);
+        Task<RouteModificationResult> UpdateRouteAsync(int id, RouteDefinition route, CancellationToken cancellation);
+        Task<RouteModificationResult> AddRouteAsync(RouteDefinition command, CancellationToken cancellation);
     }
 }

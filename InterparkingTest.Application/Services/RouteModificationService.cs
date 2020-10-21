@@ -20,17 +20,17 @@ namespace InterparkingTest.Application.Services
             _routeRepository = routeRepository;
         }
 
-        public async Task AddRouteAsync(RouteDefinition definition, CancellationToken cancellation)
+        public async Task<RouteModificationResult> AddRouteAsync(RouteDefinition definition, CancellationToken cancellation)
         {
-            await HandleRouteModification(definition, null, cancellation);
+            return await HandleRouteModification(definition, null, cancellation);
         }
 
-        public async Task UpdateRouteAsync(int id, RouteDefinition route, CancellationToken cancellation)
+        public async Task<RouteModificationResult> UpdateRouteAsync(int id, RouteDefinition route, CancellationToken cancellation)
         {
-            await HandleRouteModification(route, id, cancellation);
+            return await HandleRouteModification(route, id, cancellation);
         }
 
-        private async Task HandleRouteModification(RouteDefinition definition, int? id, CancellationToken cancellation)
+        private async Task<RouteModificationResult> HandleRouteModification(RouteDefinition definition, int? id, CancellationToken cancellation)
         {
             Route route = new Route()
             {
@@ -45,11 +45,15 @@ namespace InterparkingTest.Application.Services
                 route.Id = id.Value;
             }
 
-            route.Distance = await _routingService.CalculateDistanceAsync(route.StartPoint, route.EndPoint, cancellation);
+            var distance = await _routingService.CalculateDistanceAsync(route.StartPoint, route.EndPoint, cancellation);
+            if (distance == null)
+                return new RouteModificationResult { IsSuccess = false };
+            route.Distance = distance.Value;
 
             route.FuelConsumption = await _fuelConsumptionService.CalculateFuelConsumptionAsync(route, cancellation);
 
             await _routeRepository.SaveRouteAsync(route, cancellation);
+            return new RouteModificationResult() { IsSuccess = true };
         }
     }
 }

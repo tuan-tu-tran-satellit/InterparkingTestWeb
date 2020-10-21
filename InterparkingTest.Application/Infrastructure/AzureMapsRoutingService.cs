@@ -30,7 +30,7 @@ namespace InterparkingTest.Application.Infrastructure
             _options = options.Value;
         }
 
-        public async Task<double> CalculateDistanceAsync(Coordinates startPoint, Coordinates endPoint, CancellationToken cancellation)
+        public async Task<double?> CalculateDistanceAsync(Coordinates startPoint, Coordinates endPoint, CancellationToken cancellation)
         {
             _logger.LogDebug("Calling azure routing {0},{1} - {2},{3}", startPoint.Latitude, startPoint.Longitude, endPoint.Latitude, endPoint.Longitude);
             if (String.IsNullOrEmpty(_options.ApiKey)) throw new InvalidOperationException("Api key is not configured");

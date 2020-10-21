@@ -9,7 +9,7 @@ namespace InterparkingTest.Application.Services
 {
     class RoutingService : IRoutingService
     {
-        public Task<double> CalculateDistanceAsync(Coordinates startPoint, Coordinates endPoint, CancellationToken _)
+        public Task<double?> CalculateDistanceAsync(Coordinates startPoint, Coordinates endPoint, CancellationToken _)
         {
             //Simple implementation that calculates the "crow-flight" distance
             var a = new Geolocation.Coordinate()
@@ -24,7 +24,7 @@ namespace InterparkingTest.Application.Services
                 Longitude = endPoint.Longitude,
             };
 
-            var distance = Geolocation.GeoCalculator.GetDistance(a, b, decimalPlaces: 3, distanceUnit: Geolocation.DistanceUnit.Kilometers);
+            double? distance = Geolocation.GeoCalculator.GetDistance(a, b, decimalPlaces: 3, distanceUnit: Geolocation.DistanceUnit.Kilometers);
             
             return Task.FromResult(distance);
         }

@@ -46,6 +46,14 @@ namespace InterparkingTest.Application
             };
         }
 
+        internal static RouteModificationResult CreateRoutModificationResult()
+        {
+            return new RouteModificationResult()
+            {
+                IsSuccess = true
+            };
+        }
+
         internal static ILogger<T> GetLogger<T>()
         {
             return
