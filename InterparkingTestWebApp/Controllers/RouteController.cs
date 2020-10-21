@@ -56,7 +56,7 @@ namespace InterparkingTestWebApp.Controllers
             return View(_FORM_VIEW_NAME, viewModel);
         }
 
-        const string _FORM_VIEW_NAME = "Create";
+        const string _FORM_VIEW_NAME = "Form";
         const string _TITLE_CREATE = "Create";
         const string _TITLE_EDIT = "Edit";
 
