@@ -78,10 +78,18 @@ namespace InterparkingTestWebApp.Controllers
             //LogModelStateInfo(route);
             if (ModelState.IsValid)
             {
-                await _application.AddRouteAsync(formData.Route, cancellationToken);
+                if (formData.Id == null)
+                {
+                    await _application.AddRouteAsync(formData.Route, cancellationToken);
+                }
+                else
+                {
+                    await _application.UpdateRoute(formData.Id.Value, formData.Route, cancellationToken);
+                }
                 return RedirectToAction(nameof(Index));
             }
-            return View();
+            formData.Title = formData.Id == null ? _TITLE_CREATE : _TITLE_EDIT;
+            return View(_FORM_VIEW_NAME, formData);
         }
 
         //We could delete this but I'm just keeping it around, just in case I want to log this info again some day.
