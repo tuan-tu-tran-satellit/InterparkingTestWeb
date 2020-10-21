@@ -73,7 +73,7 @@ namespace InterparkingTestWebApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(RouteFormViewModel formData, CancellationToken cancellationToken)
+        public async Task<IActionResult> Save(RouteFormViewModel formData, CancellationToken cancellationToken)
         {
             //LogModelStateInfo(route);
             if (ModelState.IsValid)
