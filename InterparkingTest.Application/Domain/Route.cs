@@ -5,7 +5,7 @@
         public int Id { get; internal set; }
         public double EngineStartEffort { get; internal set; }
         /// <summary>
-        /// In liters/km
+        /// In liters/ 100 km
         /// </summary>
         public double CarConsumption { get; internal set; }
         public Coordinates EndPoint { get; internal set; }

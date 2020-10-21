@@ -20,7 +20,7 @@ namespace InterparkingTest.Application.Services
             Route route = new Route()
             {
                 Distance = 100, //km
-                CarConsumption = 0.06, //L/km
+                CarConsumption = 6, //L/100 km
             };
             var fuel = await fuelService.CalculateFuelConsumptionAsync(route, new CancellationToken());
             fuel.Should().Be(6);

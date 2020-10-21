@@ -12,7 +12,7 @@ namespace InterparkingTest.Application.Domain
         [Required]
         public Coordinates EndPoint { get; set; }
         /// <summary>
-        /// In liters/km
+        /// In liters/ 100 km
         /// </summary>
         [Range(0, Double.MaxValue, ErrorMessage = "The car consumption must be positive.")]
         public double CarConsumption { get; set; }
