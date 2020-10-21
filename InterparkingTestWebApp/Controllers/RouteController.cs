@@ -36,15 +36,15 @@ namespace InterparkingTestWebApp.Controllers
             {
                 StartPoint = new Coordinates()
                 {
-                    Latitude = 123,
-                    Longitude = 123,
+                    Latitude = 54.123453,
+                    Longitude = 4.342134,
                 },
                 EndPoint = new Coordinates()
                 {
-                    Latitude = 1234,
-                    Longitude = 345,
+                    Latitude = 54.365487,
+                    Longitude = 4.365987,
                 },
-                CarConsumption = 345,
+                CarConsumption = 6.2,
                 EngineStartEffort = 0,
             };
             return View(defaultRoute);
