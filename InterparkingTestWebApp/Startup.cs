@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using InterparkingTest.Application;
@@ -67,6 +68,10 @@ namespace InterparkingTestWebApp
                 var applicationFacade = scope.ServiceProvider.GetRequiredService<IApplicationFacade>();
                 applicationFacade.EnsureDatabaseCreated();
             }
+
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture; //this is needed for comma vs period as decimal separator issue when entering
+            //coordinates in the route modification form : client side validation expects a period as separator
+            //whereas server side, it depends on the system where this app is running, which we don't want: we want it to be independant of the OS setting.
         }
     }
 }
