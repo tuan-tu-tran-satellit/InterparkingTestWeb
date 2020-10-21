@@ -60,15 +60,21 @@ namespace InterparkingTestWebApp.Controllers
             //LogModelStateInfo(route);
             if (ModelState.IsValid)
             {
+                RouteModificationResult result;
                 if (formData.Id == null)
                 {
-                    await _application.AddRouteAsync(formData.Route, cancellationToken);
+                    result = await _application.AddRouteAsync(formData.Route, cancellationToken);
                 }
                 else
                 {
-                    await _application.UpdateRoute(formData.Id.Value, formData.Route, cancellationToken);
+                    result = await _application.UpdateRoute(formData.Id.Value, formData.Route, cancellationToken);
                 }
-                return RedirectToAction(nameof(Index));
+                if (result.IsSuccess)
+                    return RedirectToAction(nameof(Index));
+                else
+                {
+                    ViewData["ErrorMessage"] = "Could not calculate the distance between those locations. Please adjust the coordinates";
+                }
             }
             //This code normally never gets executed since there's client side validation and no specific server-side validation
             SetTitle(formData.Id == null ? _TITLE_CREATE : _TITLE_EDIT);
