@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -42,7 +43,12 @@ namespace InterparkingTest.Application.Infrastructure
             queryParameters["api-version"] = "1.0";
             uri.Query = queryParameters.ToString();
 
-            var content = await _httpClient.GetStringAsync(uri.Uri, cancellation);
+            var (statuCode, content) = await _httpClient.GetStringAsync(uri.Uri, cancellation, HttpStatusCode.BadRequest);
+            if(statuCode == HttpStatusCode.BadRequest)
+            {
+                _logger.LogInformation("Could not get routing : error response : {0},{1} - {2},{3}\r\n{4}", startPoint.Latitude, startPoint.Longitude, endPoint.Latitude, endPoint.Longitude, content);
+                return null;
+            }
 
             XDocument document = XDocument.Parse(content);
             XNamespace ns = document.Root.Name.Namespace;

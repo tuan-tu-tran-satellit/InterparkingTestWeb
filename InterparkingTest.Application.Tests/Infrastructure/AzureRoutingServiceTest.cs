@@ -10,6 +10,7 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading;
@@ -34,8 +35,8 @@ namespace InterparkingTest.Application.Infrastructure
             Uri calledUri = null;
             httpClient
                 .Setup(c => c.GetStringAsync(It.IsAny<Uri>(), cancellation))
-                .Callback<Uri, CancellationToken>((uri, _) => calledUri = uri)
-                .ReturnsAsync(response)
+                .Callback<Uri, CancellationToken, HttpStatusCode[]>((uri, _, codes) => calledUri = uri)
+                .ReturnsAsync((HttpStatusCode.OK, response))
             ;
 
             var options = new AzureMapsOptions()

@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -19,18 +21,18 @@ namespace InterparkingTest.Application.Infrastructure
             _logger = logger;
         }
 
-        public async Task<string> GetStringAsync(Uri uri, CancellationToken cancellation)
+        public async Task<(HttpStatusCode, string)> GetStringAsync(Uri uri, CancellationToken cancellation, params HttpStatusCode[] acceptedErrorCodes)
         {
             var client = _httpClientFactory.CreateClient();
             using (var response = await client.GetAsync(uri))
             {
                 var content = await response.Content.ReadAsStringAsync();
-                if (!response.IsSuccessStatusCode)
+                if (!response.IsSuccessStatusCode && !acceptedErrorCodes.Contains(response.StatusCode))
                 {
                     _logger.LogWarning("Error while fetching {0} : status {1}\r\n{2}", uri, response.StatusCode, content);
                     response.EnsureSuccessStatusCode();
                 }
-                return content;
+                return (response.StatusCode, content);
             }
         }
     }
