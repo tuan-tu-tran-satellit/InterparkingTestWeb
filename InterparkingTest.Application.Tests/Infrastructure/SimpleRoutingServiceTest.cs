@@ -5,15 +5,15 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 
-namespace InterparkingTest.Application.Services
+namespace InterparkingTest.Application.Infrastructure
 {
     [TestClass]
-    public class RoutingServiceTest
+    public class SimpleRoutingServiceTest
     {
         [TestMethod]
         public async Task CalculateDistance()
         {
-            var routingService = new RoutingService();
+            var routingService = new SimpleRoutingService();
             var a = new Coordinates()
             {
                 Latitude = 50.125468,
