@@ -18,5 +18,16 @@ namespace InterparkingTest.Application.Domain
         public double? CarConsumption { get; set; }
         [Range(0, Double.MaxValue, ErrorMessage = "The engine start effort must be positive.")]
         public double? EngineStartEffort { get; set; }
+
+        internal static RouteDefinition FromRoute(Route route)
+        {
+            return new RouteDefinition()
+            {
+                StartPoint = route.StartPoint,
+                EndPoint = route.EndPoint,
+                CarConsumption = route.CarConsumption,
+                EngineStartEffort = route.EngineStartEffort,
+            };
+        }
     }
 }

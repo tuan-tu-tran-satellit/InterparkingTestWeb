@@ -37,5 +37,11 @@ namespace InterparkingTest.Application
         {
             _routeRepository.EnsureDatabaseCreated();
         }
+
+        public async Task<RouteDefinition> GetRouteDefinition(int id, CancellationToken cancellation)
+        {
+            Route route = await _routeRepository.GetRouteAsync(id, cancellation);
+            return RouteDefinition.FromRoute(route);
+        }
     }
 }

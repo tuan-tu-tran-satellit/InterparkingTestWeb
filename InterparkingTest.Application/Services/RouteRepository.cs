@@ -48,5 +48,10 @@ namespace InterparkingTest.Application.Services
         {
             this.Database.EnsureCreated();
         }
+
+        public async Task<Route> GetRouteAsync(int id, CancellationToken cancellation)
+        {
+            return await Routes.FindAsync(new object[] { id }, cancellation) ?? throw new ArgumentException("Cannot find route with id " + id);
+        }
     }
 }

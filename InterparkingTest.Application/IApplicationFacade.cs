@@ -11,5 +11,6 @@ namespace InterparkingTest.Application
         Task<List<Route>> GetRoutes(CancellationToken cancellation);
         Task UpdateRoute(int id, RouteDefinition route, CancellationToken cancellation);
         void EnsureDatabaseCreated();
+        Task<RouteDefinition> GetRouteDefinition(int id, CancellationToken cancellation);
     }
 }

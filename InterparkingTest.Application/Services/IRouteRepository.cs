@@ -10,5 +10,6 @@ namespace InterparkingTest.Application.Services
         Task<List<Route>> GetRoutesAsync(CancellationToken cancellationToken);
         Task SaveRouteAsync(Route route, CancellationToken cancellationToken);
         void EnsureDatabaseCreated();
+        Task<Route> GetRouteAsync(int id, CancellationToken cancellation);
     }
 }
