@@ -32,17 +32,17 @@ namespace InterparkingTest.Application.Services
         }
 
         [TestMethod]
-        public async Task AddRoute()
+        [DynamicData(nameof(GetTestRouteDefinitions), DynamicDataSourceType.Method)]
+        public async Task AddRoute(string caseName, RouteDefinition routeDefinition)
         {
             //Arrange
-            var routeDefinition = TestData.CreateRouteDefinition();
             double distance = 6.7;
             _routing.Setup(s => s.CalculateDistanceAsync(routeDefinition.StartPoint, routeDefinition.EndPoint, _cancellation)).ReturnsAsync(distance);
 
             double fuel = 12.3;
-            Route fuelRoute = null;
+            Route routeUsedToCalculateFuel = null;
             _fuel.Setup(s => s.CalculateFuelConsumptionAsync(It.IsAny<Route>(), _cancellation))
-                .Callback<Route, CancellationToken>((route, _) => fuelRoute = route)
+                .Callback<Route, CancellationToken>((route, _) => routeUsedToCalculateFuel = route)
                 .ReturnsAsync(fuel)
             ;
 
@@ -62,27 +62,27 @@ namespace InterparkingTest.Application.Services
             {
                 StartPoint = routeDefinition.StartPoint,
                 EndPoint = routeDefinition.EndPoint,
-                EngineStartEffort = routeDefinition.EngineStartEffort,
-                CarConsumption = routeDefinition.CarConsumption,
+                EngineStartEffort = routeDefinition.EngineStartEffort ?? 0,
+                CarConsumption = routeDefinition.CarConsumption ?? 0,
                 Distance = distance,
                 FuelConsumption = fuel,
             });
-            fuelRoute.Should().BeEquivalentTo(routeDefinition);
+            routeUsedToCalculateFuel.Should().BeSameAs(savedRoute);
         }
 
         [TestMethod]
-        public async Task UpdateRoute()
+        [DynamicData(nameof(GetTestRouteDefinitions), DynamicDataSourceType.Method)]
+        public async Task UpdateRoute(string caseName, RouteDefinition routeDefinition)
         {
             //Arrange
             var routeId = 1234;
-            var routeDefinition = TestData.CreateRouteDefinition();
             double distance = 6.7;
             _routing.Setup(s => s.CalculateDistanceAsync(routeDefinition.StartPoint, routeDefinition.EndPoint, _cancellation)).ReturnsAsync(distance);
 
             double fuel = 12.3;
-            Route fuelRoute = null;
+            Route routeUsedForFuelCalculation = null;
             _fuel.Setup(s => s.CalculateFuelConsumptionAsync(It.IsAny<Route>(), _cancellation))
-                .Callback<Route, CancellationToken>((route, _) => fuelRoute = route)
+                .Callback<Route, CancellationToken>((route, _) => routeUsedForFuelCalculation = route)
                 .ReturnsAsync(fuel)
             ;
 
@@ -103,12 +103,25 @@ namespace InterparkingTest.Application.Services
                 Id = routeId,
                 StartPoint = routeDefinition.StartPoint,
                 EndPoint = routeDefinition.EndPoint,
-                EngineStartEffort = routeDefinition.EngineStartEffort,
-                CarConsumption = routeDefinition.CarConsumption,
+                EngineStartEffort = routeDefinition.EngineStartEffort ?? 0,
+                CarConsumption = routeDefinition.CarConsumption ?? 0,
                 Distance = distance,
                 FuelConsumption = fuel,
             });
-            fuelRoute.Should().BeEquivalentTo(routeDefinition);
+            routeUsedForFuelCalculation.Should().BeSameAs(savedRoute);
+        }
+
+        public static IEnumerable<object[]> GetTestRouteDefinitions()
+        {
+            RouteDefinition routeDefinition = TestData.CreateRouteDefinition();
+            yield return new object[] { "normal case", routeDefinition };
+
+            routeDefinition.CarConsumption = null;
+            yield return new object[] { "car consumption is null", routeDefinition };
+
+            routeDefinition.CarConsumption = 6.7;
+            routeDefinition.EngineStartEffort = null;
+            yield return new object[] { "engine start effort is null", routeDefinition };
         }
 
     }

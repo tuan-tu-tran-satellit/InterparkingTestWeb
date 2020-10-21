@@ -36,8 +36,8 @@ namespace InterparkingTest.Application.Services
             {
                 StartPoint = definition.StartPoint,
                 EndPoint = definition.EndPoint,
-                CarConsumption = definition.CarConsumption,
-                EngineStartEffort = definition.EngineStartEffort,
+                CarConsumption = definition.CarConsumption ?? 0,
+                EngineStartEffort = definition.EngineStartEffort ?? 0,
             };
 
             if (id.HasValue)
