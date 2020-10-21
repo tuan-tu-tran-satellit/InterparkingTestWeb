@@ -57,8 +57,8 @@ namespace InterparkingTestWebApp.Controllers
         }
 
         const string _FORM_VIEW_NAME = "Form";
-        const string _TITLE_CREATE = "Create";
-        const string _TITLE_EDIT = "Edit";
+        const string _TITLE_CREATE = "Create new route";
+        const string _TITLE_EDIT = "Edit route";
 
         public async Task<IActionResult> Edit(int id, CancellationToken cancellation)
         {
