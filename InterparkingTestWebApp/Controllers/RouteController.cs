@@ -32,25 +32,10 @@ namespace InterparkingTestWebApp.Controllers
 
         public IActionResult Create()
         {
-            var defaultRoute = new RouteDefinition
-            {
-                StartPoint = new Coordinates()
-                {
-                    Latitude = 54.123453,
-                    Longitude = 4.342134,
-                },
-                EndPoint = new Coordinates()
-                {
-                    Latitude = 54.365487,
-                    Longitude = 4.365987,
-                },
-                CarConsumption = 6.2,
-                EngineStartEffort = 0,
-            };
             var viewModel = new RouteFormViewModel()
             {
                 Id = null,
-                Route = defaultRoute,
+                Route = null,
                 Title = _TITLE_CREATE
             };
             return View(_FORM_VIEW_NAME, viewModel);
