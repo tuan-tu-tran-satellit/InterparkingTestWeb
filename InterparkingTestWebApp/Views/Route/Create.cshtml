@@ -1,54 +1,55 @@
-﻿@model InterparkingTest.Application.Domain.RouteDefinition
+﻿@model RouteFormViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = Model.Title;
 }
 
-<h1>Create a route</h1>
+<h1>@(Model.Title) a route</h1>
 
 <hr />
 <form asp-action="Create">
     <h4>Departure</h4>
     <div class="row">
+        <input asp-for="Id" type="hidden"/>
         <div class="form-group col-md-4">
-            <label asp-for="StartPoint.Longitude" class="control-label"></label>
-            <input asp-for="StartPoint.Longitude" class="form-control" placeholder="ex.: 54.125687" />
-            <span asp-validation-for="StartPoint.Longitude" class="text-danger"></span>
+            <label asp-for="Route.StartPoint.Longitude" class="control-label"></label>
+            <input asp-for="Route.StartPoint.Longitude" class="form-control" placeholder="ex.: 54.125687" />
+            <span asp-validation-for="Route.StartPoint.Longitude" class="text-danger"></span>
         </div>
         <div class="form-group col-md-4">
-            <label asp-for="StartPoint.Latitude" class="control-label"></label>
-            <input asp-for="StartPoint.Latitude" class="form-control" placeholder="ex.: 4.345677" />
-            <span asp-validation-for="StartPoint.Latitude" class="text-danger"></span>
+            <label asp-for="Route.StartPoint.Latitude" class="control-label"></label>
+            <input asp-for="Route.StartPoint.Latitude" class="form-control" placeholder="ex.: 4.345677" />
+            <span asp-validation-for="Route.StartPoint.Latitude" class="text-danger"></span>
         </div>
     </div>
     <h4>Arrival</h4>
     <div class="row">
         <div class="form-group col-md-4">
-            <label asp-for="EndPoint.Longitude" class="control-label"></label>
-            <input asp-for="EndPoint.Longitude" class="form-control" placeholder="ex.: 54.125687" />
-            <span asp-validation-for="EndPoint.Longitude" class="text-danger"></span>
+            <label asp-for="Route.EndPoint.Longitude" class="control-label"></label>
+            <input asp-for="Route.EndPoint.Longitude" class="form-control" placeholder="ex.: 54.125687" />
+            <span asp-validation-for="Route.EndPoint.Longitude" class="text-danger"></span>
         </div>
         <div class="form-group col-md-4">
-            <label asp-for="EndPoint.Latitude" class="control-label"></label>
-            <input asp-for="EndPoint.Latitude" class="form-control" placeholder="ex.: 4.345677" />
-            <span asp-validation-for="EndPoint.Latitude" class="text-danger"></span>
+            <label asp-for="Route.EndPoint.Latitude" class="control-label"></label>
+            <input asp-for="Route.EndPoint.Latitude" class="form-control" placeholder="ex.: 4.345677" />
+            <span asp-validation-for="Route.EndPoint.Latitude" class="text-danger"></span>
         </div>
     </div>
     <h4>Fuel consumption</h4>
     <div class="row">
         <div class="form-group col-md-4">
-            <label asp-for="CarConsumption" class="control-label">Car consumption (L/100 km)</label>
-            <input asp-for="CarConsumption" class="form-control" />
-            <span asp-validation-for="CarConsumption" class="text-danger"></span>
+            <label asp-for="Route.CarConsumption" class="control-label">Car consumption (L/100 km)</label>
+            <input asp-for="Route.CarConsumption" class="form-control" />
+            <span asp-validation-for="Route.CarConsumption" class="text-danger"></span>
         </div>
         <div class="form-group col-md-4">
-            <label asp-for="EngineStartEffort" class="control-label">Engine start effort (ml)</label>
-            <input asp-for="EngineStartEffort" class="form-control" />
-            <span asp-validation-for="EngineStartEffort" class="text-danger"></span>
+            <label asp-for="Route.EngineStartEffort" class="control-label">Engine start effort (ml)</label>
+            <input asp-for="Route.EngineStartEffort" class="form-control" />
+            <span asp-validation-for="Route.EngineStartEffort" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
+        <input type="submit" value="Save" class="btn btn-primary" />
         <a class="btn btn-outline-primary" asp-action="Index">Cancel</a>
     </div>
 </form>

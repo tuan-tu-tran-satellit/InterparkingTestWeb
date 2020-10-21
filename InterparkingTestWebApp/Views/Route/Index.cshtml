@@ -38,7 +38,7 @@ else
                     <td>@(route.EngineStartEffort)</td>
                     <td>@(route.Distance)</td>
                     <td>@(route.FuelConsumption)</td>
-                    <td><a href="" class="btn btn-primary">Edit</a></td>
+                    <td><a class="btn btn-primary" asp-action="Edit" asp-route-id="@(route.Id)">Edit</a></td>
                 </tr>
             }
         </tbody>

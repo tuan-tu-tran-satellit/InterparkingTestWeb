@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using InterparkingTest.Application;
 using InterparkingTest.Application.Domain;
+using InterparkingTestWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -26,7 +27,6 @@ namespace InterparkingTestWebApp.Controllers
 
         public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
-
             return View(await _application.GetRoutes(cancellationToken));
         }
 
@@ -47,17 +47,38 @@ namespace InterparkingTestWebApp.Controllers
                 CarConsumption = 6.2,
                 EngineStartEffort = 0,
             };
-            return View(defaultRoute);
+            var viewModel = new RouteFormViewModel()
+            {
+                Id = null,
+                Route = defaultRoute,
+                Title = _TITLE_CREATE
+            };
+            return View(_FORM_VIEW_NAME, viewModel);
+        }
+
+        const string _FORM_VIEW_NAME = "Create";
+        const string _TITLE_CREATE = "Create";
+        const string _TITLE_EDIT = "Edit";
+
+        public async Task<IActionResult> Edit(int id, CancellationToken cancellation)
+        {
+            var routeDefinition = await _application.GetRouteDefinition(id, cancellation);
+            var viewModel = new RouteFormViewModel()
+            {
+                Id = id,
+                Route = routeDefinition,
+                Title = _TITLE_EDIT
+            };
+            return View(_FORM_VIEW_NAME, viewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(RouteDefinition route, CancellationToken cancellationToken)
+        public async Task<IActionResult> Create(RouteFormViewModel formData, CancellationToken cancellationToken)
         {
             //LogModelStateInfo(route);
             if (ModelState.IsValid)
             {
-                _logger.LogDebug("save route: {0}");
-                await _application.AddRouteAsync(route, cancellationToken);
+                await _application.AddRouteAsync(formData.Route, cancellationToken);
                 return RedirectToAction(nameof(Index));
             }
             return View();
