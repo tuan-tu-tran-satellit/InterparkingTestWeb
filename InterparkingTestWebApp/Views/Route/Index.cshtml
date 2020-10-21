@@ -36,8 +36,8 @@ else
                     <td>@(route.EndPoint.Longitude), @(route.EndPoint.Latitude)</td>
                     <td>@(route.CarConsumption)</td>
                     <td>@(route.EngineStartEffort)</td>
-                    <td>@(route.Distance)</td>
-                    <td>@(route.FuelConsumption)</td>
+                    <td>@(route.Distance.ToString("F1"))</td>
+                    <td>@(route.FuelConsumption.ToString("F1"))</td>
                     <td><a class="btn btn-primary" asp-action="Edit" asp-route-id="@(route.Id)">Edit</a></td>
                 </tr>
             }
