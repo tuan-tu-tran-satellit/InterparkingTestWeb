@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterparkingTestWebApp", "I
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterparkingTest.Application", "InterparkingTest.Application\InterparkingTest.Application.csproj", "{D79E4267-3C89-48C5-A7D3-2397180CE9CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterparkingTest.Application.Tests", "InterparkingTest.Application.Tests\InterparkingTest.Application.Tests.csproj", "{851F4ED7-6087-4306-995D-9C63F2FEFE03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterparkingTest.Application.Tests", "InterparkingTest.Application.Tests\InterparkingTest.Application.Tests.csproj", "{851F4ED7-6087-4306-995D-9C63F2FEFE03}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{387D1ACD-3D99-4E47-89BD-24E787202C8A}"
+	ProjectSection(SolutionItems) = preProject
+		tests.runsettings = tests.runsettings
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

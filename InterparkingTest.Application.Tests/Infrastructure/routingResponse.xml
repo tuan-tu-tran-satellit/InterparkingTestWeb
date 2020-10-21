@@ -1,0 +1,55 @@
+<calculateRouteResponse xmlns="http://api.tomtom.com/routing" formatVersion="0.0.12">
+  <route>
+    <summary>
+      <lengthInMeters>1146</lengthInMeters>
+      <travelTimeInSeconds>329</travelTimeInSeconds>
+      <trafficDelayInSeconds>165</trafficDelayInSeconds>
+      <departureTime>2020-10-21T15:13:18+02:00</departureTime>
+      <arrivalTime>2020-10-21T15:18:46+02:00</arrivalTime>
+    </summary>
+    <leg>
+      <summary>
+        <lengthInMeters>1146</lengthInMeters>
+        <travelTimeInSeconds>329</travelTimeInSeconds>
+        <trafficDelayInSeconds>165</trafficDelayInSeconds>
+        <departureTime>2020-10-21T15:13:18+02:00</departureTime>
+        <arrivalTime>2020-10-21T15:18:46+02:00</arrivalTime>
+      </summary>
+      <points>
+        <point latitude="52.50930" longitude="13.42937" />
+        <point latitude="52.50904" longitude="13.42913" />
+        <point latitude="52.50895" longitude="13.42904" />
+        <point latitude="52.50868" longitude="13.42880" />
+        <point latitude="52.50840" longitude="13.42857" />
+        <point latitude="52.50816" longitude="13.42839" />
+        <point latitude="52.50791" longitude="13.42825" />
+        <point latitude="52.50757" longitude="13.42772" />
+        <point latitude="52.50752" longitude="13.42785" />
+        <point latitude="52.50742" longitude="13.42809" />
+        <point latitude="52.50735" longitude="13.42824" />
+        <point latitude="52.50730" longitude="13.42837" />
+        <point latitude="52.50673" longitude="13.42961" />
+        <point latitude="52.50619" longitude="13.43092" />
+        <point latitude="52.50574" longitude="13.43195" />
+        <point latitude="52.50528" longitude="13.43299" />
+        <point latitude="52.50513" longitude="13.43336" />
+        <point latitude="52.50464" longitude="13.43451" />
+        <point latitude="52.50451" longitude="13.43482" />
+        <point latitude="52.50444" longitude="13.43499" />
+        <point latitude="52.50418" longitude="13.43564" />
+        <point latitude="52.50372" longitude="13.43673" />
+        <point latitude="52.50343" longitude="13.43738" />
+        <point latitude="52.50330" longitude="13.43767" />
+        <point latitude="52.50275" longitude="13.43873" />
+      </points>
+    </leg>
+    <sections>
+      <section>
+        <startPointIndex>0</startPointIndex>
+        <endPointIndex>24</endPointIndex>
+        <sectionType>TRAVEL_MODE</sectionType>
+        <travelMode>car</travelMode>
+      </section>
+    </sections>
+  </route>
+</calculateRouteResponse>

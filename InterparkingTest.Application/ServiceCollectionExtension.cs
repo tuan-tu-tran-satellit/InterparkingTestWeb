@@ -1,5 +1,8 @@
-﻿using InterparkingTest.Application.Services;
+﻿using InterparkingTest.Application.Config;
+using InterparkingTest.Application.Infrastructure;
+using InterparkingTest.Application.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -9,15 +12,22 @@ namespace InterparkingTest.Application
 {
     public static class ServiceCollectionExtension
     {
-        public static IServiceCollection AddInterparkingTestApplicationServices(this IServiceCollection services, Action<DbContextOptionsBuilder> optionsAction = null)
+        public static IServiceCollection AddInterparkingTestApplicationServices(this IServiceCollection services, IConfiguration configuration = null, Action<DbContextOptionsBuilder> optionsAction = null)
         {
             services
                 .AddScoped<IApplicationFacade, ApplicationFacade>()
                 .AddDbContext<IRouteRepository, RouteRepository>(optionsAction)
                 .AddScoped<IRouteModificationService, RouteModificationService>()
-                .AddScoped<IRoutingService, RoutingService>()
+                .AddScoped<IRoutingService, AzureMapsRoutingService>()
                 .AddScoped<IFuelConsumptionService, FuelConsumptionService>()
+                .AddScoped<IHttpClient, HttpClient>()
+                .AddHttpClient()
             ;
+
+            services.Configure<AzureMapsOptions>(options =>
+            {
+                configuration?.GetSection(nameof(AzureMapsOptions)).Bind(options);
+            });
             return services;
         }
     }

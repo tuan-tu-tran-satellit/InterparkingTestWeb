@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- File name extension must be .runsettings -->
+<RunSettings>
+	<RunConfiguration>
+		<EnvironmentVariables>
+			<!-- List of environment variables we want to set-->
+			<!--
+				Set this variable to a real api key if you want to run tests that actually query the azure maps service
+				Also make sure your test runner uses this file.
+				For more info, see:
+				https://docs.microsoft.com/en-us/visualstudio/test/configure-unit-tests-by-using-a-dot-runsettings-file?view=vs-2019#specify-a-run-settings-file-in-the-ide
+			-->
+			<AZURE_MAPS_KEY></AZURE_MAPS_KEY>
+		</EnvironmentVariables>
+	</RunConfiguration>
+</RunSettings>

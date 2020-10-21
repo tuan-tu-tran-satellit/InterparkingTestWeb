@@ -33,10 +33,13 @@ namespace InterparkingTestWebApp
                     .AddConsole()
                 ;
             });
-            services.AddInterparkingTestApplicationServices(dbOptions =>
-            {
-                dbOptions.UseSqlite("Filename=routes.sqlite3");
-            });
+            services.AddInterparkingTestApplicationServices(
+                Configuration,
+                dbOptions =>
+                {
+                    dbOptions.UseSqlite("Filename=routes.sqlite3");
+                }
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

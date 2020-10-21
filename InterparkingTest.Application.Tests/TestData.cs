@@ -1,4 +1,5 @@
 ﻿using InterparkingTest.Application.Domain;
+using Microsoft.Extensions.Logging;
 using System;
 
 namespace InterparkingTest.Application
@@ -43,6 +44,20 @@ namespace InterparkingTest.Application
                 Distance = 123,
                 FuelConsumption = 456,
             };
+        }
+
+        internal static ILogger<T> GetLogger<T>()
+        {
+            return
+                LoggerFactory.Create(
+                    logging =>
+                    {
+                        logging.SetMinimumLevel(LogLevel.Trace);
+                        logging.AddConsole();
+                    }
+                )
+                .CreateLogger<T>()
+            ;
         }
     }
 }
