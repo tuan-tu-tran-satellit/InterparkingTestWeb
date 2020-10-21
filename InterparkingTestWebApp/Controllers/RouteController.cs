@@ -73,6 +73,7 @@ namespace InterparkingTestWebApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            //This code normally never gets executed since there's client side validation and no specific server-side validation
             formData.Title = formData.Id == null ? _TITLE_CREATE : _TITLE_EDIT;
             return View(_FORM_VIEW_NAME, formData);
         }
