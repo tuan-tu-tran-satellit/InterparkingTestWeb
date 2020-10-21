@@ -32,13 +32,13 @@ namespace InterparkingTestWebApp.Controllers
 
         public IActionResult Create()
         {
-            var viewModel = new RouteFormViewModel()
-            {
-                Id = null,
-                Route = null,
-                Title = _TITLE_CREATE
-            };
-            return View(_FORM_VIEW_NAME, viewModel);
+            SetTitle(_TITLE_CREATE);
+            return View(_FORM_VIEW_NAME);
+        }
+
+        private void SetTitle(string title)
+        {
+            ViewData["Title"] = title;
         }
 
         const string _FORM_VIEW_NAME = "Form";
@@ -47,18 +47,16 @@ namespace InterparkingTestWebApp.Controllers
 
         public async Task<IActionResult> Edit(int id, CancellationToken cancellation)
         {
-            var routeDefinition = await _application.GetRouteDefinition(id, cancellation);
-            var viewModel = new RouteFormViewModel()
+            SetTitle(_TITLE_EDIT);
+            return View(_FORM_VIEW_NAME, new RouteFormData()
             {
                 Id = id,
-                Route = routeDefinition,
-                Title = _TITLE_EDIT
-            };
-            return View(_FORM_VIEW_NAME, viewModel);
+                Route = await _application.GetRouteDefinition(id, cancellation),
+            });
         }
 
         [HttpPost]
-        public async Task<IActionResult> Save(RouteFormViewModel formData, CancellationToken cancellationToken)
+        public async Task<IActionResult> Save(RouteFormData formData, CancellationToken cancellationToken)
         {
             //LogModelStateInfo(route);
             if (ModelState.IsValid)
@@ -74,7 +72,7 @@ namespace InterparkingTestWebApp.Controllers
                 return RedirectToAction(nameof(Index));
             }
             //This code normally never gets executed since there's client side validation and no specific server-side validation
-            formData.Title = formData.Id == null ? _TITLE_CREATE : _TITLE_EDIT;
+            SetTitle(formData.Id == null ? _TITLE_CREATE : _TITLE_EDIT);
             return View(_FORM_VIEW_NAME, formData);
         }
 

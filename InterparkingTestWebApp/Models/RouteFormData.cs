@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace InterparkingTestWebApp.Models
 {
-    public class RouteFormViewModel
+    public class RouteFormData
     {
         [Required]
         public RouteDefinition Route { get; set; }
         public int? Id { get; set; }
-        public string Title { get; set; }
     }
 }
