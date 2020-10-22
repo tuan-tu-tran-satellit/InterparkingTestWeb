@@ -18,6 +18,7 @@ $(function () {
                 "countrySet": "BE",
                 "brandSet": "Interparking",
                 "typeahead": true,
+                "limit": 100
             },
             success: function (data) {
                 var results = $.map(data.results, match => {
