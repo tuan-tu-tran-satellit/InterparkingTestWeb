@@ -60,23 +60,37 @@ namespace InterparkingTestWebApp.Controllers
             //LogModelStateInfo(route);
             if (ModelState.IsValid)
             {
-                RouteModificationResult result;
-                if (formData.Id == null)
+                RouteModificationResult result = null;
+                try
                 {
-                    result = await _application.AddRouteAsync(formData.Route, cancellationToken);
+                    if (formData.Id == null)
+                    {
+                        result = await _application.AddRouteAsync(formData.Route, cancellationToken);
+                    }
+                    else
+                    {
+                        result = await _application.UpdateRoute(formData.Id.Value, formData.Route, cancellationToken);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    result = await _application.UpdateRoute(formData.Id.Value, formData.Route, cancellationToken);
+                    //This happens if the routing service is down for example.
+                    _logger.LogError("An error happened while saving the route: " + ex);
                 }
-                if (result.IsSuccess)
+                if (result == null)
+                {
+                    ViewData["ErrorMessage"] = "There was an error while creating the route. Please try again later or contact the administrator.";
+                }
+                else if (result.IsSuccess)
+                {
                     return RedirectToAction(nameof(Index));
+                }
                 else
                 {
                     ViewData["ErrorMessage"] = "Could not calculate the distance between those locations. Please adjust the coordinates";
                 }
             }
-            //This code normally never gets executed since there's client side validation and no specific server-side validation
+            //This code gets executed in case the client side validation passed but the creation of the route failed for some reason
             SetTitle(formData.Id == null ? _TITLE_CREATE : _TITLE_EDIT);
             return View(_FORM_VIEW_NAME, formData);
         }
