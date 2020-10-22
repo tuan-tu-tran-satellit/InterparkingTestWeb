@@ -8,6 +8,10 @@ namespace InterparkingTest.Application.Domain
     public class RouteDefinition
     {
         [Required]
+        public string StartDescription { get; set; }
+        [Required]
+        public string EndDescription { get; set; }
+        [Required]
         public Coordinates StartPoint { get; set; }
         [Required]
         public Coordinates EndPoint { get; set; }
@@ -23,6 +27,8 @@ namespace InterparkingTest.Application.Domain
         {
             return new RouteDefinition()
             {
+                StartDescription = route.StartDescription,
+                EndDescription = route.EndDescription,
                 StartPoint = route.StartPoint,
                 EndPoint = route.EndPoint,
                 CarConsumption = route.CarConsumption,

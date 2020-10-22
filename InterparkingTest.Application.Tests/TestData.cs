@@ -10,6 +10,8 @@ namespace InterparkingTest.Application
         {
             return new RouteDefinition()
             {
+                StartDescription = "start description " + offset,
+                EndDescription = "end description " + offset,
                 CarConsumption = 12.2 + offset,
                 EngineStartEffort = 2.3 + offset,
                 StartPoint = new Coordinates()
@@ -43,6 +45,8 @@ namespace InterparkingTest.Application
                 },
                 Distance = 123,
                 FuelConsumption = 456,
+                StartDescription = "start description " + offset,
+                EndDescription = "end description " + offset,
             };
         }
 

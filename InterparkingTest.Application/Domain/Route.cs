@@ -10,6 +10,8 @@
         public double CarConsumption { get; internal set; }
         public Coordinates EndPoint { get; internal set; }
         public Coordinates StartPoint { get; internal set; }
+        public string StartDescription { get; set; }
+        public string EndDescription { get; set; }
         /// <summary>
         /// In km
         /// </summary>

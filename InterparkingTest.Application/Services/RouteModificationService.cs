@@ -34,6 +34,8 @@ namespace InterparkingTest.Application.Services
         {
             Route route = new Route()
             {
+                StartDescription = definition.StartDescription,
+                EndDescription = definition.EndDescription,
                 StartPoint = definition.StartPoint,
                 EndPoint = definition.EndPoint,
                 CarConsumption = definition.CarConsumption ?? 0,
