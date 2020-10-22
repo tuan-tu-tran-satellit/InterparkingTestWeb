@@ -8,8 +8,9 @@
     <h4>Deparure</h4>
     <div class="row">
         <div class="form-group col-md-8">
-            <label class="control-label">Parking name</label>
-            <input id="startSearch" class="form-control" placeholder="ex.: Rogier, De Brouckère" />
+            <label class="control-label" asp-for="Route.StartDescription">Description</label>
+            <input id="startSearch" class="form-control" placeholder="ex.: Rogier, De Brouckère" asp-for="Route.StartDescription" />
+            <span asp-validation-for="Route.StartDescription" class="text-danger"></span>
         </div>
     </div>
 
@@ -28,8 +29,9 @@
     <h4>Arrival</h4>
     <div class="row">
         <div class="form-group col-md-8">
-            <label class="control-label">Parking name</label>
-            <input id="endSearch" class="form-control" placeholder="ex.: Rogier, De Brouckère" />
+            <label class="control-label" asp-for="Route.EndDescription">Parking name</label>
+            <input id="endSearch" class="form-control" placeholder="ex.: Rogier, De Brouckère" asp-for="Route.EndDescription" />
+            <span asp-validation-for="Route.EndDescription" class="text-danger"></span>
         </div>
     </div>
     <div class="row">
