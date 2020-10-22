@@ -1,4 +1,6 @@
-﻿@{
+﻿@using InterparkingTest.Application.Domain
+
+@{
     ViewData["Title"] = "Routes";
 }
 
@@ -32,8 +34,8 @@ else
             @foreach (var route in Model)
             {
                 <tr>
-                    <td>@(route.StartDescription)</td>
-                    <td>@(route.EndDescription)</td>
+                    <td>@{DisplayParking(route.StartDescription, route.StartPoint);}</td>
+                    <td>@{DisplayParking(route.EndDescription, route.EndPoint);}</td>
                     <td>@(route.CarConsumption)</td>
                     <td>@(route.EngineStartEffort)</td>
                     <td>@(route.Distance.ToString("F1"))</td>
@@ -44,3 +46,13 @@ else
         </tbody>
     </table>
 }
+
+
+@{
+    void DisplayParking(string description, Coordinates position)
+    {
+        <a href="https://www.google.com/maps/place/@position.Latitude,@position.Longitude" target="_blank">
+            @description
+        </a>
+    }
+} 
