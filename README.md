@@ -25,20 +25,17 @@ So the web application only really talks to the `IApplicationFacade`.
 
 Then there are some tests in `InterparkingTest.Application.Tests`
 
+## Route modification form
+
+In the route creation/edit form, when the user searches for a parking, the web application makes requests to the Azure Maps search API to find
+the coordinates of the parking.
+
 ## Dependencies
 
 This application needs to be able to write to the local filesystem to persist the SQLite database.  
 It will try to write it to the file `routes.sqlite3` where it is deployed.  
 (consider making this configurable)
 
-Furthermore, it needs an API key to communicate with the Azure Maps routing API.  
+Furthermore, it needs an API key to communicate with the Azure Maps routing API and the search API.  
 This key can be configured through the standard ASP.NET Core configuration mechanisms, under the key `AzureMapsOptions:ApiKey`.  
 But for convenience, there's a hard-coded api key in the `AzureMapsRoutingService`.
-
-## Route modification form
-
-Currently, in the route creation/edit form, when the user clicks save, the application eventually queries the routing web service.
-If that web service fails to recognize the coordinates input by the user, an error message will be displayed asking the user to adjust the coordinates.
-
-So it's actually a bit complicated to input valid coordinates by typing random coordinates.
-We should consider improving the UX to input the departure/arrival locations.
