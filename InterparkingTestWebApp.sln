@@ -11,6 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterparkingTest.Applicatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{387D1ACD-3D99-4E47-89BD-24E787202C8A}"
 	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
 		tests.runsettings = tests.runsettings
 	EndProjectSection
 EndProject
