@@ -37,7 +37,8 @@ namespace InterparkingTestWebApp
                 Configuration,
                 dbOptions =>
                 {
-                    dbOptions.UseSqlite("Filename=routes.sqlite3");
+                    dbOptions.UseInMemoryDatabase("iptest");
+                    //dbOptions.UseSqlite("Filename=routes.sqlite3");
                 }
             );
         }
