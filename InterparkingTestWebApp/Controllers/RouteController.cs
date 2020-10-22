@@ -6,10 +6,12 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using InterparkingTest.Application;
+using InterparkingTest.Application.Config;
 using InterparkingTest.Application.Domain;
 using InterparkingTestWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace InterparkingTestWebApp.Controllers
@@ -18,11 +20,13 @@ namespace InterparkingTestWebApp.Controllers
     {
         private readonly ILogger<RouteController> _logger;
         private readonly IApplicationFacade _application;
+        private readonly IOptions<AzureMapsOptions> _mapOptions;
 
-        public RouteController(ILogger<RouteController> logger, IApplicationFacade application)
+        public RouteController(ILogger<RouteController> logger, IApplicationFacade application, IOptions<AzureMapsOptions> mapOptions)
         {
             _logger = logger;
             _application = application;
+            _mapOptions = mapOptions;
         }
 
         public async Task<IActionResult> Index(CancellationToken cancellationToken)
@@ -32,12 +36,12 @@ namespace InterparkingTestWebApp.Controllers
 
         public IActionResult Create()
         {
-            SetTitle(_TITLE_CREATE);
+            SetViewData(_TITLE_CREATE);
             return View(_FORM_VIEW_NAME);
         }
         public async Task<IActionResult> Edit(int id, CancellationToken cancellation)
         {
-            SetTitle(_TITLE_EDIT);
+            SetViewData(_TITLE_EDIT);
             return View(_FORM_VIEW_NAME, new RouteFormData()
             {
                 Id = id,
@@ -45,9 +49,10 @@ namespace InterparkingTestWebApp.Controllers
             });
         }
 
-        private void SetTitle(string title)
+        private void SetViewData(string title)
         {
             ViewData["Title"] = title;
+            ViewData["ApiKey"] = _mapOptions.Value.ApiKey;
         }
 
         const string _FORM_VIEW_NAME = "Form";
@@ -91,7 +96,7 @@ namespace InterparkingTestWebApp.Controllers
                 }
             }
             //This code gets executed in case the client side validation passed but the creation of the route failed for some reason
-            SetTitle(formData.Id == null ? _TITLE_CREATE : _TITLE_EDIT);
+            SetViewData(formData.Id == null ? _TITLE_CREATE : _TITLE_EDIT);
             return View(_FORM_VIEW_NAME, formData);
         }
 

@@ -72,7 +72,7 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script>window.com_satellit_api_key = "";</script>
+    <script>window.com_satellit_api_key = "@(ViewData["ApiKey"])";</script>
     <script src="~/js/route-form.js"></script>
 }
 
