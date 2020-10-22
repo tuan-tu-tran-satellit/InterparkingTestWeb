@@ -58,15 +58,12 @@ namespace InterparkingTest.Application.Services
             //Assert
             Mock.VerifyAll(_routing, _repo, _fuel);
 
-            savedRoute.Should().BeEquivalentTo(new Route()
-            {
-                StartPoint = routeDefinition.StartPoint,
-                EndPoint = routeDefinition.EndPoint,
-                EngineStartEffort = routeDefinition.EngineStartEffort ?? 0,
-                CarConsumption = routeDefinition.CarConsumption ?? 0,
-                Distance = distance,
-                FuelConsumption = fuel,
-            });
+            routeDefinition.CarConsumption ??= 0;
+            routeDefinition.EngineStartEffort ??= 0;
+
+            savedRoute.Should().BeEquivalentTo(routeDefinition);
+            savedRoute.Distance.Should().Be(distance);
+            savedRoute.FuelConsumption.Should().Be(fuel);
             routeUsedToCalculateFuel.Should().BeSameAs(savedRoute);
         }
 
@@ -98,16 +95,12 @@ namespace InterparkingTest.Application.Services
             //Assert
             Mock.VerifyAll(_routing, _repo, _fuel);
 
-            savedRoute.Should().BeEquivalentTo(new Route()
-            {
-                Id = routeId,
-                StartPoint = routeDefinition.StartPoint,
-                EndPoint = routeDefinition.EndPoint,
-                EngineStartEffort = routeDefinition.EngineStartEffort ?? 0,
-                CarConsumption = routeDefinition.CarConsumption ?? 0,
-                Distance = distance,
-                FuelConsumption = fuel,
-            });
+            routeDefinition.CarConsumption ??= 0;
+            routeDefinition.EngineStartEffort ??= 0;
+
+            savedRoute.Should().BeEquivalentTo(routeDefinition);
+            savedRoute.Distance.Should().Be(distance);
+            savedRoute.FuelConsumption.Should().Be(fuel);
             routeUsedForFuelCalculation.Should().BeSameAs(savedRoute);
         }
 
