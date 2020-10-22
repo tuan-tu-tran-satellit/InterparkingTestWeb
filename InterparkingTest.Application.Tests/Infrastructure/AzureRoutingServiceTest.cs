@@ -75,8 +75,10 @@ namespace InterparkingTest.Application.Infrastructure
         {
             var apiKey = Environment.GetEnvironmentVariable("AZURE_MAPS_KEY");
             if (String.IsNullOrEmpty(apiKey))
+            {
                 Assert.Inconclusive("The api key is not configured");
-            //See tests.runsettings for more info
+                //See tests.runsettings for more info
+            }
             var services = new ServiceCollection();
             services.AddSingleton<AzureMapsRoutingService>();
             services.AddLogging(logging =>
