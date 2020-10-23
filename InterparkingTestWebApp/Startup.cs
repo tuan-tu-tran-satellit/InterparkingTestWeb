@@ -37,8 +37,15 @@ namespace InterparkingTestWebApp
                 Configuration,
                 dbOptions =>
                 {
-                    dbOptions.UseInMemoryDatabase("iptest");
-                    //dbOptions.UseSqlite("Filename=routes.sqlite3");
+                    if (Configuration.GetValue<bool?>("useInMemoryDb") ?? false)
+                    {
+                        dbOptions.UseInMemoryDatabase("iptest"); //this is useful for running on Azure App service without a db
+                        //On Azure App service, seems we can't even write to local file system
+                    }
+                    else
+                    {
+                        dbOptions.UseSqlite("Filename=routes.sqlite3");
+                    }
                 }
             );
         }
