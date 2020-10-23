@@ -34,7 +34,9 @@ the coordinates of the parking.
 
 This application needs to be able to write to the local filesystem to persist the SQLite database.  
 It will try to write it to the file `routes.sqlite3` where it is deployed.  
-(consider making this configurable)
+(consider making this configurable)  
+It is however possible to configure it to use an in-memory db provider using the configuration optional boolean configuration item `useInMemoryDb`.  
+This is useful in particular to run the app on Azure App Service where it seems we can't write to the local file system.
 
 Furthermore, it needs an API key to communicate with the Azure Maps routing API and the search API.  
 This key can be configured through the standard ASP.NET Core configuration mechanisms, under the key `AzureMapsOptions:ApiKey`.  
